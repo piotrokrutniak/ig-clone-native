@@ -1,14 +1,17 @@
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import { View } from '@/components/Themed';
+import { usePosts } from '@/data/react-query/usePosts';
+import { PostsList } from '@/components/home/posts-list/PostsList';
 
 export default function TabOneScreen() {
+  usePosts();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      <ScrollView>
+        <PostsList />
+      </ScrollView>
     </View>
   );
 }
@@ -29,3 +32,5 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 });
+
+
