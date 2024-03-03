@@ -1,6 +1,4 @@
-import { User } from "@/app/types"
-
-export default async function GetUser(id: number){
+export default async function getUserById(id: number){
     let response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`,
                         {
                             method: 'GET',
