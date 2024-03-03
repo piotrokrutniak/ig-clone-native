@@ -8,7 +8,6 @@ export const UserProfileHeader = ({ user }: { user: User }) => {
       <Avatar.Image size={120} source={{ uri: "" }} style={styles.avatar}/>
       <Text style={[styles.headerText, styles.name]}>{user?.name}</Text>
       <Text style={[styles.headerText, styles.subText]}>@{user?.username}</Text>
-      <Text style={[styles.headerText, styles.midText]}>{user?.company?.name}</Text>
     </View>
   )
 }
