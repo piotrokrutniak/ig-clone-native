@@ -15,6 +15,7 @@ export const CommentsModalHeader = ({ closeModal }: { closeModal: () => void }) 
 
 const styles = StyleSheet.create({
   modalHeader: {
+    paddingVertical: 7,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

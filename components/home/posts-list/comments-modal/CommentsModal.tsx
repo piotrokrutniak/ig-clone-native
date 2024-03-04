@@ -1,8 +1,11 @@
-import { FlatList, Modal, StyleSheet, View, VirtualizedList } from "react-native"
+import { FlatList, Modal, StyleSheet, Text, View, VirtualizedList } from "react-native"
 import { CommentsModalHeader } from "./header/CommentsHeaderModal";
+import { usePostComments } from "@/data/react-query/usePostComments";
+import { CommentCard } from "./comment/CommentCard";
 
 export const CommentsModal = ({modalVisible, closeModal}: {modalVisible: boolean, closeModal: () => void}) => {
   const array = Array.from({length: 10}).map((_, i) => i);
+  const { comments } = usePostComments(1);
 
   return (
     <Modal visible={modalVisible} animationType="slide" >
@@ -10,13 +13,15 @@ export const CommentsModal = ({modalVisible, closeModal}: {modalVisible: boolean
         <CommentsModalHeader closeModal={closeModal} />
         <View style={styles.commentsSection}>
           <FlatList
-            data={array}
-            renderItem={() => <View style={styles.commentForm}></View>}
+            data={comments}
+            renderItem={(comment) => <CommentCard comment={comment.item} />}
+            contentContainerStyle={styles.commentsList}
           />
         </View>
         <View style={styles.commentForm}>
-          
-
+          {
+            // TODO: Add comment form
+          }
         </View>
       </View>
     </Modal>
@@ -30,15 +35,18 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     backgroundColor: "black",
-    padding: 16,
+    gap: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
   },
   commentsSection: {
-    borderWidth: 1,
-    borderColor: "white",
     display: "flex",
     flexDirection: "column",
     flex: 1,
     gap: 16,
+  },
+  commentsList: {
+    rowGap: 16,
   },
   commentForm: {
     borderWidth: 1,
@@ -50,4 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 16,
   },
+  text: {
+    color: "white",
+  }
 });
