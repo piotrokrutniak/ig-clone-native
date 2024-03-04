@@ -3,14 +3,15 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { View } from '@/components/Themed';
 import { usePosts } from '@/data/react-query/usePosts';
 import { PostsList } from '@/components/home/posts-list/PostsList';
+import { Post } from '@/data/types';
 
 export default function TabOneScreen() {
-  usePosts();
+  const { posts } = usePosts();
 
   return (
     <View style={styles.container}>
       <ScrollView>
-        <PostsList />
+        <PostsList posts={posts || [] as Post[]}/>
       </ScrollView>
     </View>
   );

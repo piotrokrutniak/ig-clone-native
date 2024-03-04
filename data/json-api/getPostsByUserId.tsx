@@ -1,5 +1,5 @@
 
-export default async function GetPostsByUserId(page: number = 1, userId?: number){
+export default async function getPostsByUserId(page: number = 1, userId?: number){
     let response = await fetch(`https://jsonplaceholder.typicode.com/posts?${userId ? `userId=${userId}` : ""}_page=${page}`,
                         {
                             method: 'GET',

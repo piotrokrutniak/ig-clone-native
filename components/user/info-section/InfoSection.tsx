@@ -1,15 +1,11 @@
 import { User } from "@/data/types"
 import { StyleSheet, Text, View } from "react-native";
 import { InfoRow } from "./info-row/InfoRow";
-import Collapsible from 'react-native-collapsible';
-import { useState } from "react";
-import { MaterialIcons } from "@expo/vector-icons";
 import { CollapsibleSection } from "@/components/reusable-components/CollapsibleSection";
 import { GalleryView } from "@/components/reusable-components/GalleryView";
 
 export const InfoSection = ({ user }: { user: User }) => {
-  const [isSectionCollapsed, setIsSectionCollapsed] = useState(true); 
-
+  
   return (
     <View style={styles.infoSection}>
       <CollapsibleSection sectionName="Details">
