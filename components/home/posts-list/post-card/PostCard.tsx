@@ -3,20 +3,16 @@ import { UserHeader } from "@/components/reusable-components/UserHeader";
 import { Post } from "@/data/types";
 import { useThemeColors } from "@/utilities/themes/useThemeColors";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Link, useRouter } from "expo-router";
-import { useState } from "react";
-import { StyleSheet } from "react-native";
+import { Link } from "expo-router";
+import { Pressable, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 
-export const PostCard = ({ post }: { post: Post }) => {
-  const router = useRouter();
+export const PostCard = ({ post, setActiveId }: { post: Post, setActiveId: (id: number) => void }) => {
   const {} = useThemeColors();
 
-  const [modalVisible, setModalVisible] = useState(true);
-
-  const goToModal = () => {
-    router.navigate({ pathname: '/(pages)/user/modal', params: { id: post.id.toString() }});
-  };
+  const setActiveComments = () => {
+    setActiveId(post.id);
+  }
 
   return (
     <View style={styles.card}>
@@ -29,7 +25,7 @@ export const PostCard = ({ post }: { post: Post }) => {
       </Link>
       <View style={styles.actions}>
         <ActionButton icon={<MaterialIcons name="thumb-up" size={24} color="white" />} label="Like" />
-        <ActionButton icon={<MaterialIcons name="comment" size={24} color="white" />} label="Comments" onTouch={goToModal} />
+        <ActionButton icon={<MaterialIcons name="comment" size={24} color="white" />} label="Comments" onTouch={setActiveComments} />
       </View>
     </View>
   );
@@ -37,10 +33,10 @@ export const PostCard = ({ post }: { post: Post }) => {
 
 const ActionButton = ({ icon, label, onTouch }: { icon: React.ReactNode, label: string, onTouch?: () => void }) => {
   return (
-    <View style={styles.actionButton} onTouchEnd={onTouch}>
+    <Pressable style={styles.actionButton} onPress={onTouch}>
       {icon}
       <Text style={styles.actionLabel}>{label}</Text>
-    </View>
+    </Pressable>
   )
 }
 
