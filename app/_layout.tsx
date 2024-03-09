@@ -1,12 +1,13 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Slot, Stack } from 'expo-router';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { useColorScheme } from '@/components/useColorScheme';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { UserContextProvider } from '@/components/contexts/user-context/UserContext';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,10 +53,12 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <QueryClientProvider client={queryClient}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal', animation: "fade_from_bottom" }} />
-        </Stack>
+        <UserContextProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: 'modal', animation: "fade_from_bottom" }} />
+          </Stack>
+      </UserContextProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );

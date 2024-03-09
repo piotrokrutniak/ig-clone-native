@@ -1,11 +1,14 @@
-import { FlatList, Modal, StyleSheet, Text, View, VirtualizedList } from "react-native"
+import { FlatList, Modal, StyleSheet, Text, TextInput, View } from "react-native"
 import { CommentsModalHeader } from "./header/CommentsHeaderModal";
 import { usePostComments } from "@/data/react-query/usePostComments";
 import { CommentCard } from "./comment/CommentCard";
+import { Button } from "react-native-paper";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useUserContext } from "@/components/contexts/user-context/UserContext";
 
 export const CommentsModal = ({modalVisible, closeModal}: {modalVisible: boolean, closeModal: () => void}) => {
-  const array = Array.from({length: 10}).map((_, i) => i);
   const { comments } = usePostComments(1);
+  const { user } = useUserContext();
 
   return (
     <Modal visible={modalVisible} animationType="slide" >
@@ -19,16 +22,24 @@ export const CommentsModal = ({modalVisible, closeModal}: {modalVisible: boolean
           />
         </View>
         <View style={styles.commentForm}>
-          {
-            // TODO: Add comment form
-          }
+          <TextInput
+            placeholder={"Add a comment"}
+            style={[styles.commentInput, styles.text]}
+            placeholderTextColor="gray"
+          />
+          <Button 
+            style={styles.commentButton} 
+            contentStyle={styles.commentButtonLabel} 
+            rippleColor={"gray"}
+            onPress={() => {}}
+          >
+            <MaterialIcons name="send" size={23} color="white" />
+          </Button>
         </View>
       </View>
     </Modal>
   )
 }
-
-// TODO: Make the commentForm respond to keyboard position
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -49,14 +60,32 @@ const styles = StyleSheet.create({
     rowGap: 16,
   },
   commentForm: {
-    borderWidth: 1,
-    borderColor: "white",
-    height: 128,
+    paddingVertical: 8,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: 16,
+    gap: 8,
+  },
+  commentInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "gray",
+    padding: 8,
+    borderRadius: 8,
+  },
+  commentButton: {
+    borderRadius: 8,
+  },
+  commentButtonLabel: {
+    height: 46,
+    borderRadius: 8,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "gray",
+    backgroundColor: "black",
+    padding: 0,
   },
   text: {
     color: "white",
