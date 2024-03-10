@@ -4,6 +4,7 @@ import { Post } from "@/data/types";
 import { useThemeColors } from "@/utilities/themes/useThemeColors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Link } from "expo-router";
+import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 
@@ -20,6 +21,12 @@ export const PostCard = ({
     setActiveId(post.id);
   };
 
+  const [isLiked, setIsLiked] = useState(false);
+
+  const toggleLiked = () => {
+    setIsLiked((prev) => !prev);
+  };
+
   return (
     <View style={styles.card}>
       <UserHeader userId={post.userId} />
@@ -33,8 +40,15 @@ export const PostCard = ({
       </Link>
       <View style={styles.actions}>
         <ActionButton
-          icon={<MaterialIcons name="thumb-up" size={24} color="white" />}
+          icon={
+            <MaterialIcons
+              name="thumb-up"
+              size={24}
+              color={isLiked ? "blue" : "white"}
+            />
+          }
           label="Like"
+          onTouch={toggleLiked}
         />
         <ActionButton
           icon={<MaterialIcons name="comment" size={24} color="white" />}

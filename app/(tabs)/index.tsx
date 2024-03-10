@@ -10,7 +10,7 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps>
         <PostsList posts={posts || ([] as Post[])} />
       </ScrollView>
     </View>

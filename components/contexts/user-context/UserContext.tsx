@@ -29,7 +29,9 @@ const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
   const fetchedUser = useUserById(5);
 
   useEffect(() => {
-    setUser(fetchedUser);
+    if (fetchedUser) {
+      setUser(fetchedUser);
+    }
   });
 
   return (

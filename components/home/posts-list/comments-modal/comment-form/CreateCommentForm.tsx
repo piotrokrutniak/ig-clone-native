@@ -2,14 +2,8 @@ import { useUserContext } from "@/components/contexts/user-context/UserContext";
 import { MaterialIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Button } from "react-native-paper";
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Control,
-  Controller,
-  FieldErrors,
-  Noop,
-  useForm,
-} from "react-hook-form";
+import React, { useRef, useState } from "react";
+import { Controller, FieldErrors, Noop, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Comment } from "@/data/types";
@@ -32,7 +26,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export const CommentForm = ({
+export const CreateCommentForm = ({
   postId,
   addComment,
 }: {
@@ -43,7 +37,6 @@ export const CommentForm = ({
   const {
     handleSubmit,
     formState: { errors },
-    getValues,
     control,
     reset,
   } = useForm<FormData>({

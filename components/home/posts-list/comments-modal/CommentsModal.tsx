@@ -2,7 +2,7 @@ import { FlatList, Modal, StyleSheet, View } from "react-native";
 import { CommentsModalHeader } from "./header/CommentsHeaderModal";
 import { usePostComments } from "@/data/react-query/usePostComments";
 import { CommentCard } from "./comment/CommentCard";
-import { CommentForm } from "./comment-form/CommentForm";
+import { CreateCommentForm } from "./comment-form/CreateCommentForm";
 import { Comment } from "@/data/types";
 import { useEffect, useState } from "react";
 import { postPostComment } from "@/data/json-api/postPostComment";
@@ -41,7 +41,7 @@ export const CommentsModal = ({
             contentContainerStyle={styles.commentsList}
           />
         </View>
-        <CommentForm postId={postId} addComment={addComment} />
+        <CreateCommentForm postId={postId} addComment={addComment} />
       </View>
     </Modal>
   );
