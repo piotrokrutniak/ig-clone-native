@@ -23,7 +23,6 @@ export const PostsList = ({ posts }: { posts: Post[] }) => {
   }, [activeId]);
 
   const addPost = async (post: Post) => {
-    console.log("addPost", post);
     const newPost = await postPost(post);
     setFakePosts([newPost, ...fakePosts]);
   };

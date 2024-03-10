@@ -1,7 +1,7 @@
 import { Comment } from "../types";
 
 export async function postPostComment(data: Comment) {
-  let response = await fetch(`https://jsonplaceholder.typicode.com/comments`, {
+  const response = await fetch(`https://jsonplaceholder.typicode.com/comments`, {
     method: "POST",
     mode: "cors",
     headers: {

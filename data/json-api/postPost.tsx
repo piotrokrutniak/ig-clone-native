@@ -1,7 +1,7 @@
 import { Post } from "../types";
 
 export async function postPost(data: Post) {
-  let response = await fetch(`https://jsonplaceholder.typicode.com/posts`, {
+  const response = await fetch(`https://jsonplaceholder.typicode.com/posts`, {
     method: "POST",
     mode: "cors",
     headers: {

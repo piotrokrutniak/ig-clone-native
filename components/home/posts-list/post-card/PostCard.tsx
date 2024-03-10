@@ -1,11 +1,11 @@
 import { View } from "@/components/Themed";
+import { ActionButton } from "@/components/reusable-components/ActionButton";
 import { UserHeader } from "@/components/reusable-components/UserHeader";
 import { Post } from "@/data/types";
-import { useThemeColors } from "@/utilities/themes/useThemeColors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 
 export const PostCard = ({
@@ -15,13 +15,11 @@ export const PostCard = ({
   post: Post;
   setActiveId: (id: number) => void;
 }) => {
-  // const {} = useThemeColors();
-
+  const [isLiked, setIsLiked] = useState(false);
+  
   const setActiveComments = () => {
     setActiveId(post.id);
   };
-
-  const [isLiked, setIsLiked] = useState(false);
 
   const toggleLiked = () => {
     setIsLiked((prev) => !prev);
@@ -30,14 +28,16 @@ export const PostCard = ({
   return (
     <View style={styles.card}>
       <UserHeader userId={post.userId} />
-      <Link href={`/post/${post.id}`} asChild>
         <View style={styles.body}>
+        <Link href={`/post/${post.id}`} asChild>
           <Text style={styles.title} numberOfLines={1}>
             {post.title}
           </Text>
+          </Link>
+          <Link href={`/post/${post.id}`} asChild>
           <Text style={styles.content}>{post.body}</Text>
+          </Link>
         </View>
-      </Link>
       <View style={styles.actions}>
         <ActionButton
           icon={
@@ -57,23 +57,6 @@ export const PostCard = ({
         />
       </View>
     </View>
-  );
-};
-
-const ActionButton = ({
-  icon,
-  label,
-  onTouch,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  onTouch?: () => void;
-}) => {
-  return (
-    <Pressable style={styles.actionButton} onPress={onTouch}>
-      {icon}
-      <Text style={styles.actionLabel}>{label}</Text>
-    </Pressable>
   );
 };
 

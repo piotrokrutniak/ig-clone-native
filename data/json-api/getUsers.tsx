@@ -1,5 +1,5 @@
 export default async function GetUsers(page: number = 1) {
-  let response = await fetch(
+  const response = await fetch(
     `https://jsonplaceholder.typicode.com/users?_page=${page}`,
     {
       method: "GET",
@@ -10,8 +10,8 @@ export default async function GetUsers(page: number = 1) {
     },
   );
 
-  let body = await response.json();
-  let headers = response.headers;
+  const body = await response.json();
+  const headers = response.headers;
 
   return { body: body, count: headers.get("x-total-count") ?? "0" };
 }

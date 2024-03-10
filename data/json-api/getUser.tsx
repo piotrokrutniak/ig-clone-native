@@ -1,5 +1,5 @@
 export default async function getUserById(id: number) {
-  let response = await fetch(
+  const response = await fetch(
     `https://jsonplaceholder.typicode.com/users/${id}`,
     {
       method: "GET",
@@ -10,6 +10,7 @@ export default async function getUserById(id: number) {
     },
   );
 
-  let body = await response.json();
+  const body = await response.json();
+  
   return await body;
 }

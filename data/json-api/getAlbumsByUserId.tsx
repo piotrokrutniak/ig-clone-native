@@ -2,7 +2,7 @@ export default async function GetAlbumsByUserId(
   page: number = 1,
   userId?: number,
 ) {
-  let response = await fetch(
+  const response = await fetch(
     `https://jsonplaceholder.typicode.com/albums?${userId ? `userId=${userId}` : ""}_page=${page}`,
     {
       method: "GET",
@@ -13,8 +13,8 @@ export default async function GetAlbumsByUserId(
     },
   );
 
-  let body = await response.json();
-  let headers = response.headers;
+  const body = await response.json();
+  const headers = response.headers;
 
   return { body: body, count: headers.get("x-total-count") ?? "0" };
 }

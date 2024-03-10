@@ -6,6 +6,7 @@ import { Pressable } from "react-native";
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
+import { Avatar } from "react-native-paper";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -31,7 +32,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Feed",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -52,7 +53,13 @@ export default function TabLayout() {
         name="two"
         options={{
           title: "Your Profile",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: () => 
+            <Avatar.Image
+              size={25}
+              source={{
+                uri: "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png",
+              }}
+            />
         }}
       />
     </Tabs>
