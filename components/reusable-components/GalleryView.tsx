@@ -1,15 +1,20 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native"
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export const GalleryView = () => {
   const array = Array.from({ length: 16 }, (_, index) => index);
   return (
-    <FlatList style={styles.gallery} numColumns={3} data={array} renderItem={({ item }) => (
-      <View style={styles.square} >
-        <Text>{item}</Text>
-      </View>
-    )} />
-  )
-}
+    <FlatList
+      style={styles.gallery}
+      numColumns={3}
+      data={array}
+      renderItem={({ item }) => (
+        <View style={styles.square}>
+          <Text>{item}</Text>
+        </View>
+      )}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
   gallery: {
@@ -29,4 +34,3 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 });
-

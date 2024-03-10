@@ -5,12 +5,18 @@ import { Avatar } from "react-native-paper";
 export const UserProfileHeader = ({ user }: { user: User }) => {
   return (
     <View style={styles.header}>
-      <Avatar.Image size={120} source={{ uri: "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" }} style={styles.avatar}/>
+      <Avatar.Image
+        size={120}
+        source={{
+          uri: "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png",
+        }}
+        style={styles.avatar}
+      />
       <Text style={[styles.headerText, styles.name]}>{user?.name}</Text>
       <Text style={[styles.headerText, styles.subText]}>@{user?.username}</Text>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -36,6 +42,6 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
-    fontWeight: "700"
-  }
+    fontWeight: "700",
+  },
 });

@@ -1,34 +1,33 @@
 import { useUserContext } from "@/components/contexts/user-context/UserContext";
-import { MaterialIcons } from "@expo/vector-icons"
+import { MaterialIcons } from "@expo/vector-icons";
 import { Form } from "react-hook-form";
-import { StyleSheet, Text, TextInput, View } from "react-native"
-import { Button } from "react-native-paper"
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Button } from "react-native-paper";
 
 export const CommentForm = () => {
   const { user } = useUserContext();
 
   return (
     <Form>
-
-    <View style={styles.commentForm}>
-      <TextInput
-        placeholder={"Add a comment"}
-        style={[styles.commentInput, styles.text]}
-        placeholderTextColor="gray"
+      <View style={styles.commentForm}>
+        <TextInput
+          placeholder={"Add a comment"}
+          style={[styles.commentInput, styles.text]}
+          placeholderTextColor="gray"
         />
-      <Button
-        style={styles.commentButton} 
-        contentStyle={styles.commentButtonLabel} 
-        rippleColor={"gray"}
-        onPress={() => {}}
+        <Button
+          style={styles.commentButton}
+          contentStyle={styles.commentButtonLabel}
+          rippleColor={"gray"}
+          onPress={() => {}}
         >
-        <Text style={styles.text}>Add Comment</Text>
-        <MaterialIcons name="send" size={23} color="white" />
-      </Button>
-    </View>
-        </Form>
-  )
-}
+          <Text style={styles.text}>Add Comment</Text>
+          <MaterialIcons name="send" size={23} color="white" />
+        </Button>
+      </View>
+    </Form>
+  );
+};
 
 const styles = StyleSheet.create({
   commentForm: {
@@ -61,5 +60,5 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-  }
+  },
 });

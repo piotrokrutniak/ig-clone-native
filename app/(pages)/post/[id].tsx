@@ -17,21 +17,25 @@ const PostPage = () => {
 
   const handleClick = (index: number) => {
     setImageIndex(index);
-  }
+  };
 
   useEffect(() => {
-    setDisplayedSrc(post?.photos && post?.photos[imageIndex]?.url || "");
+    setDisplayedSrc((post?.photos && post?.photos[imageIndex]?.url) || "");
   }, [post]);
 
   return (
     <View style={styles.headerSection}>
       <ImageCover url={displayedSrc} />
-      <GallerySlider mainIndex={imageIndex} photos={post?.photos || []} setImageIndex={handleClick} />
+      <GallerySlider
+        mainIndex={imageIndex}
+        photos={post?.photos || []}
+        setImageIndex={handleClick}
+      />
       <Text style={styles.title}>{post?.title}</Text>
       <Text>{post?.body}</Text>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   headerSection: {
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
-  }
+  },
 });
 
 export default PostPage;

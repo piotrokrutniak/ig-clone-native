@@ -7,4 +7,4 @@ export const useThemeColors = () => {
   const primaryColor = colorScheme === "dark" ? "white" : "black";
   const secondaryColor = colorScheme === "dark" ? "white" : "black";
   return { backgroundColor, textColor, primaryColor, secondaryColor };
-}
+};

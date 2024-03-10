@@ -1,18 +1,16 @@
-import { Comment } from "../types"
+import { Comment } from "../types";
 
-export async function postPostComment(data: Comment){
-    let response = await fetch(`https://jsonplaceholder.typicode.com/comments`,
-                        {
-                            method: 'POST',
-                            mode: 'cors',
-                            headers:{
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(data)
-                        }
-    )
+export async function postPostComment(data: Comment) {
+  let response = await fetch(`https://jsonplaceholder.typicode.com/comments`, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
-    const comment: Comment = await response.json();
+  const comment: Comment = await response.json();
 
-    return comment;
+  return comment;
 }

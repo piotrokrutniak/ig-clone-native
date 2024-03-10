@@ -5,16 +5,20 @@ import { Comment } from "@/data/types";
 import { StyleSheet, View } from "react-native";
 
 export const CommentCard = ({ comment }: { comment: Comment }) => {
-  const { user: { email } } = useUserContext();
+  const {
+    user: { email },
+  } = useUserContext();
 
   return (
     <View style={styles.commentForm}>
-      <Text style={[styles.text, styles.userName]}>{comment.email + (comment.email === email ? " (you)" : "")}</Text>
+      <Text style={[styles.text, styles.userName]}>
+        {comment.email + (comment.email === email ? " (you)" : "")}
+      </Text>
       <Text style={[styles.text, styles.title]}>{comment.name}</Text>
       <Text style={[styles.text, styles.body]}>{comment.body}</Text>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   commentForm: {
@@ -40,5 +44,5 @@ const styles = StyleSheet.create({
   body: {
     fontSize: 16,
     fontWeight: "300",
-  }
+  },
 });

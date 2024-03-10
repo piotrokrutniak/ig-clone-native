@@ -7,38 +7,61 @@ import { Link } from "expo-router";
 import { Pressable, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 
-export const PostCard = ({ post, setActiveId }: { post: Post, setActiveId: (id: number) => void }) => {
+export const PostCard = ({
+  post,
+  setActiveId,
+}: {
+  post: Post;
+  setActiveId: (id: number) => void;
+}) => {
   // const {} = useThemeColors();
 
   const setActiveComments = () => {
     setActiveId(post.id);
-  }
+  };
 
   return (
     <View style={styles.card}>
       <UserHeader userId={post.userId} />
       <Link href={`/post/${post.id}`} asChild>
         <View style={styles.body}>
-          <Text style={styles.title} numberOfLines={1}>{post.title}</Text>
+          <Text style={styles.title} numberOfLines={1}>
+            {post.title}
+          </Text>
           <Text style={styles.content}>{post.body}</Text>
         </View>
       </Link>
       <View style={styles.actions}>
-        <ActionButton icon={<MaterialIcons name="thumb-up" size={24} color="white" />} label="Like" />
-        <ActionButton icon={<MaterialIcons name="comment" size={24} color="white" />} label="Comments" onTouch={setActiveComments} />
+        <ActionButton
+          icon={<MaterialIcons name="thumb-up" size={24} color="white" />}
+          label="Like"
+        />
+        <ActionButton
+          icon={<MaterialIcons name="comment" size={24} color="white" />}
+          label="Comments"
+          onTouch={setActiveComments}
+        />
       </View>
     </View>
   );
-}
+};
 
-const ActionButton = ({ icon, label, onTouch }: { icon: React.ReactNode, label: string, onTouch?: () => void }) => {
+const ActionButton = ({
+  icon,
+  label,
+  onTouch,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  onTouch?: () => void;
+}) => {
   return (
     <Pressable style={styles.actionButton} onPress={onTouch}>
       {icon}
       <Text style={styles.actionLabel}>{label}</Text>
     </Pressable>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   title: {
@@ -89,5 +112,5 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 8,
     zIndex: 1000,
-  }
+  },
 });

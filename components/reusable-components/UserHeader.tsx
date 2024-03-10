@@ -16,7 +16,12 @@ export const UserHeader = ({ userId }: { userId: number }) => {
         </View>
       </Link>
       <Link href={`/user/${userId}`}>
-        <Avatar.Image size={40} source={{ uri: "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" }} />
+        <Avatar.Image
+          size={40}
+          source={{
+            uri: "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png",
+          }}
+        />
       </Link>
     </View>
   );
@@ -31,5 +36,5 @@ const styles = StyleSheet.create({
   },
   email: {
     opacity: 0.7,
-  }
+  },
 });

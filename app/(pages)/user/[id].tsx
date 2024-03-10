@@ -18,25 +18,24 @@ const UserPage = () => {
     <ScrollView>
       <UserProfileHeader user={user} />
       <View style={styles.mainView}>
-      <InfoSection user={user} />
-      <Text style={styles.postsHeader}>{`${firstName} Posts`}</Text>
-      <PostsList posts={posts} />
+        <InfoSection user={user} />
+        <Text style={styles.postsHeader}>{`${firstName} Posts`}</Text>
+        <PostsList posts={posts} />
       </View>
     </ScrollView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   mainView: {
-    gap: 16
+    gap: 16,
   },
   postsHeader: {
     textAlign: "center",
     fontWeight: "400",
     fontSize: 24,
-    color: "white"
-  }
+    color: "white",
+  },
 });
 
 export default UserPage;
-

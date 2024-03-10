@@ -1,11 +1,10 @@
-import { User } from "@/data/types"
+import { User } from "@/data/types";
 import { StyleSheet, Text, View } from "react-native";
 import { InfoRow } from "./info-row/InfoRow";
 import { CollapsibleSection } from "@/components/reusable-components/CollapsibleSection";
 import { GalleryView } from "@/components/reusable-components/GalleryView";
 
 export const InfoSection = ({ user }: { user: User }) => {
-  
   return (
     <View style={styles.infoSection}>
       <CollapsibleSection sectionName="Details">
@@ -21,11 +20,11 @@ export const InfoSection = ({ user }: { user: User }) => {
         </>
       </CollapsibleSection>
       <CollapsibleSection sectionName="Galeries">
-          <GalleryView/>
+        <GalleryView />
       </CollapsibleSection>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   infoSection: {

@@ -1,9 +1,9 @@
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from "react-native";
 
-import { View } from '@/components/Themed';
-import { usePosts } from '@/data/react-query/usePosts';
-import { PostsList } from '@/components/home/posts-list/PostsList';
-import { Post } from '@/data/types';
+import { View } from "@/components/Themed";
+import { usePosts } from "@/data/react-query/usePosts";
+import { PostsList } from "@/components/home/posts-list/PostsList";
+import { Post } from "@/data/types";
 
 export default function TabOneScreen() {
   const { posts } = usePosts();
@@ -11,7 +11,7 @@ export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <PostsList posts={posts || [] as Post[]}/>
+        <PostsList posts={posts || ([] as Post[])} />
       </ScrollView>
     </View>
   );
@@ -20,18 +20,16 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: "80%",
   },
 });
-
-

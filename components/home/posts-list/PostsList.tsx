@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 import { Post } from "@/data/types";
 import { View } from "react-native";
-import { PostCard } from './post-card/PostCard';
-import { useEffect, useState } from 'react';
-import { CommentsModal } from './comments-modal/CommentsModal';
+import { PostCard } from "./post-card/PostCard";
+import { useEffect, useState } from "react";
+import { CommentsModal } from "./comments-modal/CommentsModal";
 
 export const PostsList = ({ posts }: { posts: Post[] }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -16,29 +16,31 @@ export const PostsList = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <View style={styles.postsContainer}>
-        {posts && posts.map((post: Post) => (
-          <PostCard key={post.id} post={post} setActiveId={setActiveId} />
+        {posts &&
+          posts.map((post: Post) => (
+            <PostCard key={post.id} post={post} setActiveId={setActiveId} />
           ))}
       </View>
-      {activeId && 
-      <CommentsModal 
-        modalVisible={modalVisible} 
-        closeModal={() => activeId && setActiveId(undefined)} 
-        postId={activeId}
-      />}
+      {activeId && (
+        <CommentsModal
+          modalVisible={modalVisible}
+          closeModal={() => activeId && setActiveId(undefined)}
+          postId={activeId}
+        />
+      )}
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   postsContainer: {
-    display: 'flex',
+    display: "flex",
     rowGap: 8,
-    paddingHorizontal: 4
+    paddingHorizontal: 4,
   },
   pressable: {
-    backgroundColor: 'blue',
-    color: 'white',
+    backgroundColor: "blue",
+    color: "white",
     padding: 32,
-  }
+  },
 });

@@ -1,11 +1,17 @@
 import { useUserContext } from "@/components/contexts/user-context/UserContext";
-import { MaterialIcons } from "@expo/vector-icons"
-import { StyleSheet, Text, TextInput, View } from "react-native"
-import { Button } from "react-native-paper"
-import React, { useEffect, useRef, useState } from 'react';
-import { Control, Controller, FieldErrors, Noop, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { MaterialIcons } from "@expo/vector-icons";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Button } from "react-native-paper";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Control,
+  Controller,
+  FieldErrors,
+  Noop,
+  useForm,
+} from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Comment } from "@/data/types";
 
 // type Comment = {
@@ -26,9 +32,21 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export const CommentForm = ({ postId, addComment }: { postId: number, addComment: (value: Comment) => void}) => {
+export const CommentForm = ({
+  postId,
+  addComment,
+}: {
+  postId: number;
+  addComment: (value: Comment) => void;
+}) => {
   const { user } = useUserContext();
-  const { handleSubmit, formState: { errors }, getValues, control, reset } = useForm<FormData>({
+  const {
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    control,
+    reset,
+  } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       id: 0,
@@ -50,9 +68,9 @@ export const CommentForm = ({ postId, addComment }: { postId: number, addComment
         control={control}
         name="name"
         render={({ field: { onChange, onBlur, value } }) => (
-          <FormInput 
-            placeholder="Enter title here" 
-            name="name" 
+          <FormInput
+            placeholder="Enter title here"
+            name="name"
             errors={errors}
             value={value}
             onChange={onChange}
@@ -64,9 +82,9 @@ export const CommentForm = ({ postId, addComment }: { postId: number, addComment
         control={control}
         name="body"
         render={({ field: { onChange, onBlur, value } }) => (
-          <FormInput 
-            placeholder="Enter comment here" 
-            name="body" 
+          <FormInput
+            placeholder="Enter comment here"
+            name="body"
             errors={errors}
             value={value}
             onChange={onChange}
@@ -75,8 +93,8 @@ export const CommentForm = ({ postId, addComment }: { postId: number, addComment
         )}
       />
       <Button
-        style={styles.commentButton} 
-        contentStyle={styles.commentButtonLabel} 
+        style={styles.commentButton}
+        contentStyle={styles.commentButtonLabel}
         rippleColor={"gray"}
         onPress={handleSubmit(onSubmit)}
       >
@@ -86,11 +104,18 @@ export const CommentForm = ({ postId, addComment }: { postId: number, addComment
         </View>
       </Button>
     </View>
-  )
-}
+  );
+};
 
 // TODO: Move to a separate file, implement form context, add generic T to the form fields
-const FormInput = ({ placeholder, name, value, onChange, onBlur, errors }: { 
+const FormInput = ({
+  placeholder,
+  name,
+  value,
+  onChange,
+  onBlur,
+  errors,
+}: {
   placeholder: string;
   name: "name" | "body";
   value: string;
@@ -120,24 +145,30 @@ const FormInput = ({ placeholder, name, value, onChange, onBlur, errors }: {
     onChange(e.nativeEvent.text);
   };
 
-  return(
+  return (
     <View style={styles.formRow}>
-        <TextInput
-          id={name}
-          ref={inputRef}
-          value={value}
-          placeholder={placeholder}
-          style={[styles.commentInput, isFocused && styles.commentInputFocused, styles.text]}
-          onChange={onChangeHandler}
-          onFocus={focusHandler}
-          onBlur={blurHandler}
-          blurOnSubmit={true}
-          placeholderTextColor="gray"
-        />
-      {errors[name] && <Text style={styles.errorText}>{errors[name]?.message}</Text>}
+      <TextInput
+        id={name}
+        ref={inputRef}
+        value={value}
+        placeholder={placeholder}
+        style={[
+          styles.commentInput,
+          isFocused && styles.commentInputFocused,
+          styles.text,
+        ]}
+        onChange={onChangeHandler}
+        onFocus={focusHandler}
+        onBlur={blurHandler}
+        blurOnSubmit={true}
+        placeholderTextColor="gray"
+      />
+      {errors[name] && (
+        <Text style={styles.errorText}>{errors[name]?.message}</Text>
+      )}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   commentForm: {
@@ -176,10 +207,10 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "red",
-    textAlign: "right"
+    textAlign: "right",
   },
   label: {
     flexDirection: "row",
     gap: 8,
-  }
+  },
 });

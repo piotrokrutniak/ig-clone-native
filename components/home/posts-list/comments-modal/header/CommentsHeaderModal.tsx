@@ -1,7 +1,11 @@
-import { MaterialIcons } from "@expo/vector-icons"
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { MaterialIcons } from "@expo/vector-icons";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export const CommentsModalHeader = ({ closeModal }: { closeModal: () => void }) => {
+export const CommentsModalHeader = ({
+  closeModal,
+}: {
+  closeModal: () => void;
+}) => {
   return (
     <View style={styles.modalHeader}>
       <View style={styles.dummyContainer}></View>
@@ -10,8 +14,8 @@ export const CommentsModalHeader = ({ closeModal }: { closeModal: () => void }) 
         <MaterialIcons name="close" size={32} color="white" />
       </Pressable>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   modalHeader: {
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  dummyContainer:{
+  dummyContainer: {
     width: 32,
     height: 32,
   },
@@ -28,5 +32,5 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     alignSelf: "center",
-  }
+  },
 });
