@@ -1,14 +1,31 @@
-import { FlatList, Modal, StyleSheet, Text, TextInput, View } from "react-native"
+import { FlatList, Modal, StyleSheet, View } from "react-native"
 import { CommentsModalHeader } from "./header/CommentsHeaderModal";
 import { usePostComments } from "@/data/react-query/usePostComments";
 import { CommentCard } from "./comment/CommentCard";
-import { Button } from "react-native-paper";
-import { MaterialIcons } from "@expo/vector-icons";
-import { useUserContext } from "@/components/contexts/user-context/UserContext";
+import { CommentForm } from "./comment-form/CommentForm";
+import { Comment } from "@/data/types";
+import { useEffect, useState } from "react";
+import { postPostComment } from "@/data/json-api/postPostComment";
 
-export const CommentsModal = ({modalVisible, closeModal}: {modalVisible: boolean, closeModal: () => void}) => {
-  const { comments } = usePostComments(1);
-  const { user } = useUserContext();
+export const CommentsModal = ({ postId, modalVisible, closeModal}: {
+  postId: number,
+  modalVisible: boolean, 
+  closeModal: () => void
+}) => {
+  const { comments } = usePostComments(postId);
+  const [fakeComments, setFakeComments] = useState<Comment[]>([]);
+
+  useEffect(() => {
+    if (comments) {
+      setFakeComments([...comments]);
+    }
+  }, [comments]);
+
+  const addComment = async (comment: Comment) => {
+    console.log("Posting comment");
+    const newComment = await postPostComment(comment);
+    setFakeComments([...fakeComments, newComment]);
+  }
 
   return (
     <Modal visible={modalVisible} animationType="slide" >
@@ -16,26 +33,12 @@ export const CommentsModal = ({modalVisible, closeModal}: {modalVisible: boolean
         <CommentsModalHeader closeModal={closeModal} />
         <View style={styles.commentsSection}>
           <FlatList
-            data={comments}
+            data={fakeComments}
             renderItem={(comment) => <CommentCard comment={comment.item} />}
             contentContainerStyle={styles.commentsList}
           />
         </View>
-        <View style={styles.commentForm}>
-          <TextInput
-            placeholder={"Add a comment"}
-            style={[styles.commentInput, styles.text]}
-            placeholderTextColor="gray"
-          />
-          <Button 
-            style={styles.commentButton} 
-            contentStyle={styles.commentButtonLabel} 
-            rippleColor={"gray"}
-            onPress={() => {}}
-          >
-            <MaterialIcons name="send" size={23} color="white" />
-          </Button>
-        </View>
+        <CommentForm postId={postId} addComment={addComment}/>
       </View>
     </Modal>
   )
@@ -58,34 +61,6 @@ const styles = StyleSheet.create({
   },
   commentsList: {
     rowGap: 16,
-  },
-  commentForm: {
-    paddingVertical: 8,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: 8,
-  },
-  commentInput: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "gray",
-    padding: 8,
-    borderRadius: 8,
-  },
-  commentButton: {
-    borderRadius: 8,
-  },
-  commentButtonLabel: {
-    height: 46,
-    borderRadius: 8,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    borderColor: "gray",
-    backgroundColor: "black",
-    padding: 0,
   },
   text: {
     color: "white",

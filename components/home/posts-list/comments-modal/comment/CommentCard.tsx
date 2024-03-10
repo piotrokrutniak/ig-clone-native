@@ -1,13 +1,15 @@
 import { Text } from "@/components/Themed";
+import { useUserContext } from "@/components/contexts/user-context/UserContext";
 import { UserHeader } from "@/components/reusable-components/UserHeader";
 import { Comment } from "@/data/types";
 import { StyleSheet, View } from "react-native";
 
 export const CommentCard = ({ comment }: { comment: Comment }) => {
+  const { user: { email } } = useUserContext();
 
   return (
     <View style={styles.commentForm}>
-      <Text style={[styles.text, styles.userName]}>{comment.email}</Text>
+      <Text style={[styles.text, styles.userName]}>{comment.email + (comment.email === email ? " (you)" : "")}</Text>
       <Text style={[styles.text, styles.title]}>{comment.name}</Text>
       <Text style={[styles.text, styles.body]}>{comment.body}</Text>
     </View>

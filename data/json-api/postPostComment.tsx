@@ -1,6 +1,6 @@
-import { Comment } from "@/app/types"
+import { Comment } from "../types"
 
-export default async function PostCommentPost(data: Comment){
+export async function postPostComment(data: Comment){
     let response = await fetch(`https://jsonplaceholder.typicode.com/comments`,
                         {
                             method: 'POST',
@@ -12,7 +12,7 @@ export default async function PostCommentPost(data: Comment){
                         }
     )
 
-    let body = await response.json()
+    const comment: Comment = await response.json();
 
-    return {body: body}
+    return comment;
 }

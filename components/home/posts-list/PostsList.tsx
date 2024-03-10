@@ -20,7 +20,12 @@ export const PostsList = ({ posts }: { posts: Post[] }) => {
           <PostCard key={post.id} post={post} setActiveId={setActiveId} />
           ))}
       </View>
-      <CommentsModal modalVisible={modalVisible} closeModal={() => activeId && setActiveId(undefined)} />
+      {activeId && 
+      <CommentsModal 
+        modalVisible={modalVisible} 
+        closeModal={() => activeId && setActiveId(undefined)} 
+        postId={activeId}
+      />}
     </>
   );
 }

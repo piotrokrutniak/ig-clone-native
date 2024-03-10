@@ -8,7 +8,7 @@ import { Pressable, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 
 export const PostCard = ({ post, setActiveId }: { post: Post, setActiveId: (id: number) => void }) => {
-  const {} = useThemeColors();
+  // const {} = useThemeColors();
 
   const setActiveComments = () => {
     setActiveId(post.id);
