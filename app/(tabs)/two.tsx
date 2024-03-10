@@ -1,35 +1,43 @@
-import { StyleSheet } from "react-native";
-
-import EditScreenInfo from "@/components/EditScreenInfo";
+import { ScrollView, StyleSheet } from "react-native";
 import { Text, View } from "@/components/Themed";
+import { PostsList } from "@/components/home/posts-list/PostsList";
+import { InfoSection } from "@/components/user/info-section/InfoSection";
+import { UserProfileHeader } from "@/components/user/user-profile-header/UserProfileHeader";
+import { useUserPosts } from "@/data/react-query/useUserPosts";
+import { useUserContext } from "@/components/contexts/user-context/UserContext";
+import { useEffect } from "react";
 
 export default function TabTwoScreen() {
+  const { user } = useUserContext();
+  const posts = useUserPosts(user.id);
+
+  useEffect(() => {
+    console.log("posts", posts);
+  }, [posts]);
+
+  const firstName = user?.name.split(" ")[0] + "'s";
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-    </View>
+    <ScrollView>
+      <UserProfileHeader user={user} />
+      <View style={styles.mainView}>
+        <InfoSection user={user} />
+        <Text style={styles.postsHeader}>{`${firstName} Posts`}</Text>
+        <PostsList posts={posts} />
+      </View>
+    </ScrollView>
   );
-}
+};
+  
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  mainView: {
+    gap: 16,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
+  postsHeader: {
+    textAlign: "center",
+    fontWeight: "400",
+    fontSize: 24,
+    color: "white",
   },
 });

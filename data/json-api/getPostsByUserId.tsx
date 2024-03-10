@@ -1,9 +1,10 @@
+import { Post } from "../types";
+
 export default async function getPostsByUserId(
-  page: number = 1,
-  userId?: number,
+  userId: number,
 ) {
   let response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?${userId ? `userId=${userId}` : ""}_page=${page}`,
+    `https://jsonplaceholder.typicode.com/posts?userId=${userId}`,
     {
       method: "GET",
       mode: "cors",
@@ -13,8 +14,7 @@ export default async function getPostsByUserId(
     },
   );
 
-  let body = await response.json();
-  let headers = response.headers;
+  const data = await response.json();
 
-  return { body: body, count: headers.get("x-total-count") ?? "0" };
+  return data as Post[];
 }
