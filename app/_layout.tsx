@@ -60,6 +60,9 @@ function RootLayoutNav() {
         <UserContextProvider>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(pages)/album/[id]" options={{ headerTitle: "Album" }} />
+            <Stack.Screen name="(pages)/user/[id]" options={{ headerTitle: "User" }} />
+            <Stack.Screen name="(pages)/post/[id]" options={{ headerTitle: "Post" }} />
             <Stack.Screen
               name="modal"
               options={{ presentation: "modal", animation: "fade_from_bottom" }}

@@ -20,7 +20,7 @@ export const InfoSection = ({ user }: { user: User }) => {
         </>
       </CollapsibleSection>
       <CollapsibleSection sectionName="Galeries">
-        <GalleryView />
+        <GalleryView userId={user.id} />
       </CollapsibleSection>
     </View>
   );

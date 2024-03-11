@@ -1,16 +1,21 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useUserAlbums } from "@/data/react-query/useUserAlbums";
+import { Link } from "expo-router";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 
-export const GalleryView = () => {
-  const array = Array.from({ length: 16 }, (_, index) => index);
+export const GalleryView = ({ userId }: { userId: number }) => {
+  const albums = useUserAlbums(userId);
+
   return (
     <FlatList
       style={styles.gallery}
       numColumns={3}
-      data={array}
+      data={albums}
       renderItem={({ item }) => (
-        <View style={styles.square}>
-          <Text>{item}</Text>
-        </View>
+        <Link href={`/album/${item.id}`} style={styles.square}>
+          <View style={styles.square}>
+            <Text>{item.id}</Text>
+          </View>
+        </Link>
       )}
     />
   );

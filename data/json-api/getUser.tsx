@@ -11,6 +11,6 @@ export default async function getUserById(id: number) {
   );
 
   const body = await response.json();
-  
+
   return await body;
 }

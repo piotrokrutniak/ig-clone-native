@@ -16,7 +16,7 @@ export const PostCard = ({
   setActiveId: (id: number) => void;
 }) => {
   const [isLiked, setIsLiked] = useState(false);
-  
+
   const setActiveComments = () => {
     setActiveId(post.id);
   };
@@ -28,16 +28,16 @@ export const PostCard = ({
   return (
     <View style={styles.card}>
       <UserHeader userId={post.userId} />
-        <View style={styles.body}>
+      <View style={styles.body}>
         <Link href={`/post/${post.id}`} asChild>
           <Text style={styles.title} numberOfLines={1}>
             {post.title}
           </Text>
-          </Link>
-          <Link href={`/post/${post.id}`} asChild>
+        </Link>
+        <Link href={`/post/${post.id}`} asChild>
           <Text style={styles.content}>{post.body}</Text>
-          </Link>
-        </View>
+        </Link>
+      </View>
       <View style={styles.actions}>
         <ActionButton
           icon={

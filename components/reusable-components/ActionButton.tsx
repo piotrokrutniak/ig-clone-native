@@ -28,5 +28,5 @@ const styles = StyleSheet.create({
   actionLabel: {
     color: "white",
     fontSize: 16,
-  }
+  },
 });

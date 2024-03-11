@@ -27,7 +27,7 @@ export default function TabTwoScreen() {
       </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   mainView: {

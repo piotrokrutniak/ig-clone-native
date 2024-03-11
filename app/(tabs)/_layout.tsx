@@ -53,13 +53,14 @@ export default function TabLayout() {
         name="two"
         options={{
           title: "Your Profile",
-          tabBarIcon: () => 
+          tabBarIcon: () => (
             <Avatar.Image
               size={25}
               source={{
                 uri: "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png",
               }}
             />
+          ),
         }}
       />
     </Tabs>

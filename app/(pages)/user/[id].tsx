@@ -11,7 +11,6 @@ const UserPage = () => {
   const { id } = useLocalSearchParams();
   const user = useUserById(parseInt(id.toString()));
   const posts = useUserPosts(parseInt(id.toString()));
-
   const firstName = user?.name.split(" ")[0] + "'s";
 
   return (
