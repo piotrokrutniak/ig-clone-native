@@ -1,4 +1,6 @@
-export default async function GetPostById(id?: number) {
+import { Post } from "../types";
+
+export const getPostById = async (id?: number) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${id}`,
     {
@@ -10,8 +12,7 @@ export default async function GetPostById(id?: number) {
     },
   );
 
-  const body = await response.json();
-  const headers = response.headers;
+  const body: Post = await response.json();
 
-  return { body: body, count: headers.get("x-total-count") ?? "0" };
-}
+  return body;
+};

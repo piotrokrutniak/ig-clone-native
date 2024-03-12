@@ -1,4 +1,6 @@
-export default async function GetCommentsByPostId(postId: number) {
+import { Comment } from "../types";
+
+export const getCommentsByPostId = async (postId: number) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${postId}/comments`,
     {
@@ -10,8 +12,7 @@ export default async function GetCommentsByPostId(postId: number) {
     },
   );
 
-  const body = await response.json();
-  const headers = response.headers;
+  const body: Comment[] = await response.json();
 
-  return { body: body, count: headers.get("x-total-count") ?? "0" };
-}
+  return body || [];
+};

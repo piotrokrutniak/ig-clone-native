@@ -1,4 +1,6 @@
-export default async function GetPostThumbnail(id?: number) {
+import { Photo } from "../types";
+
+export const getPostThumbnail = async (id?: number) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${id}/photos?_limit=1`,
     {
@@ -10,8 +12,7 @@ export default async function GetPostThumbnail(id?: number) {
     },
   );
 
-  const body = await response.json();
-  const headers = response.headers;
+  const body: Photo = await response.json();
 
-  return { body: body, count: headers.get("x-total-count") ?? "0" };
-}
+  return body;
+};

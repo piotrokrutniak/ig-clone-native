@@ -1,6 +1,6 @@
 import { Post } from "../types";
 
-export async function postPost(data: Post) {
+export const postPost = async (data: Post) => {
   const response = await fetch(`https://jsonplaceholder.typicode.com/posts`, {
     method: "POST",
     mode: "cors",
@@ -13,4 +13,4 @@ export async function postPost(data: Post) {
   const post: Post = await response.json();
 
   return post;
-}
+};

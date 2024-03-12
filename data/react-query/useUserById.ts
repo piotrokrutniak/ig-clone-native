@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import getUserById from "../json-api/getUser";
+import { getUserById } from "../json-api/getUserById";
 import { User } from "../types";
 
 export const useUserById = (userId: number) => {

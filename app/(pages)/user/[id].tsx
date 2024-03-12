@@ -13,6 +13,7 @@ const UserPage = () => {
   const posts = useUserPosts(parseInt(id.toString()));
   const firstName = user?.name.split(" ")[0] + "'s";
 
+  // TODO: Display add post form only if the user is the current user
   return (
     <ScrollView>
       <UserProfileHeader user={user} />

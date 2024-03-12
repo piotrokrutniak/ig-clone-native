@@ -1,4 +1,6 @@
-export default async function GetPosts(page: number = 1) {
+import { Post } from "../types";
+
+export const getPosts = async (page: number = 1) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts?_page=${page}`,
     {
@@ -10,8 +12,8 @@ export default async function GetPosts(page: number = 1) {
     },
   );
 
-  const body = await response.json();
+  const body: Post[] = await response.json();
   const headers = response.headers;
 
-  return { body: body, count: headers.get("x-total-count") ?? "0" };
-}
+  return { body, count: headers.get("x-total-count") ?? "0" };
+};

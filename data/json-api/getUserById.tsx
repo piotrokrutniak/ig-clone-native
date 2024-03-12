@@ -1,4 +1,6 @@
-export default async function getUserById(id: number) {
+import { User } from "../types";
+
+export const getUserById = async (id: number) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/users/${id}`,
     {
@@ -10,7 +12,7 @@ export default async function getUserById(id: number) {
     },
   );
 
-  const body = await response.json();
+  const body: User = await response.json();
 
-  return await body;
-}
+  return body;
+};

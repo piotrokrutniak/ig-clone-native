@@ -12,7 +12,7 @@ export const getPostsByUserId = async (userId: number) => {
     },
   );
 
-  const data = await response.json();
+  const data: Post[] = await response.json();
 
-  return data as Post[];
-}
+  return data || [];
+};

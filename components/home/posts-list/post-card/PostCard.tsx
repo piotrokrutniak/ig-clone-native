@@ -29,12 +29,12 @@ export const PostCard = ({
     <View style={styles.card}>
       <UserHeader userId={post.userId} />
       <View style={styles.body}>
-        <Link href={`/post/${post.id}`} asChild>
+        <Link href={`/post/${post.id}`}>
           <Text style={styles.title} numberOfLines={1}>
             {post.title}
           </Text>
         </Link>
-        <Link href={`/post/${post.id}`} asChild>
+        <Link href={`/post/${post.id}`}>
           <Text style={styles.content}>{post.body}</Text>
         </Link>
       </View>

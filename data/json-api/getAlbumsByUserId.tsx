@@ -12,7 +12,7 @@ export const getAlbumsByUserId = async (userId: number) => {
     },
   );
 
-  const data = await response.json();
+  const body: Album[] = await response.json();
 
-  return data as Album[];
+  return body || [];
 };
