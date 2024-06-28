@@ -6,6 +6,8 @@ import { PostsList } from "@/components/home/posts-list/PostsList";
 import { Post } from "@/data/types";
 
 export default function TabOneScreen() {
+  // TODO: Move this to PostsList to avoid unnecessary re-renders.
+  // TODO: Update usePosts to support infinite scroll.
   const { posts } = usePosts();
 
   return (

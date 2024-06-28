@@ -22,7 +22,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "useCleartextTraffic": true,
+      "package": "com.piotrokrutniak.igclonenative"
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +36,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "dfde4418-24e6-4671-9968-5aae1ea439fd"
+      }
     }
   }
 }
